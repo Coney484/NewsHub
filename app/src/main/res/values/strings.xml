@@ -2,4 +2,7 @@
     <string name="app_name">News Hub</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="headlines_news">Headlines News</string>
+    <string name="saved_news">Saved News</string>
+    <string name="search_news">Search News</string>
 </resources>
