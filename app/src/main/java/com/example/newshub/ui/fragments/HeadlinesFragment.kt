@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -79,8 +80,8 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
                         newsAdapter.differ.submitList(newsheadlines.articles.toList())
                         val totalPagesCount = newsheadlines.totalResults / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.headlinesPage == totalPagesCount
-                        if(isLastPage) {
-                            binding.rvHeadlines.setPadding(0,0,0,0)
+                        if (isLastPage) {
+                            binding.rvHeadlines.setPadding(0, 0, 0, 0)
                         }
                     }
 
@@ -89,7 +90,11 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
                 is Resource.Failure -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e("Headlines Failed", "An error Occured: $message")
+                        Toast.makeText(
+                            activity,
+                            "Some Error Occurred :$message",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
