@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newshub.MainActivity
 import com.example.newshub.R
@@ -48,6 +49,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         initializeViewModel()
         setRecyclerView()
         observeSearchData()
+        onlickHandlersOnArticle()
 
     }
 
@@ -109,5 +111,20 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
     private fun showProgressBar() {
         binding.paginationProgressBar.visibility = View.VISIBLE
     }
+
+    private fun onlickHandlersOnArticle() {
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_searchNewsFragment_to_articlesFragment,
+                bundle
+            )
+        }
+    }
+
+
+
 
 }

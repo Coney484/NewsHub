@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newshub.MainActivity
 
@@ -24,8 +25,6 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
     lateinit var binding: FragmentHeadlinesBinding
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,7 +32,7 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
     ): View? {
 
 
-        Log.e("TEST","FINEOK")
+        Log.e("TEST", "FINEOK")
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_headlines, container, false)
         return binding.root
     }
@@ -45,6 +44,7 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
         initializeViewModel()
         setRecyclerView()
         observeDataNews()
+        onlickHandlersOnArticle()
 
     }
 
@@ -94,6 +94,19 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
 
     private fun showProgressBar() {
         binding.paginationProgressBar.visibility = View.VISIBLE
+    }
+
+
+    private fun onlickHandlersOnArticle() {
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_headlinesFragment_to_articlesFragment,
+                bundle
+            )
+        }
     }
 
 
