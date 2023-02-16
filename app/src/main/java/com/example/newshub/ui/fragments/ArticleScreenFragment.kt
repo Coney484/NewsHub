@@ -15,6 +15,7 @@ import com.example.newshub.R
 import com.example.newshub.databinding.FragmentArticleScreenBinding
 import com.example.newshub.databinding.FragmentHeadlinesBinding
 import com.example.newshub.ui.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class ArticleScreenFragment : Fragment(R.layout.fragment_article_screen) {
 
@@ -41,6 +42,7 @@ class ArticleScreenFragment : Fragment(R.layout.fragment_article_screen) {
 
         initializeViewModel()
         onClickToOpenWebView()
+        onClickToSaveArticle()
 
     }
 
@@ -54,6 +56,15 @@ class ArticleScreenFragment : Fragment(R.layout.fragment_article_screen) {
         binding.webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url)
+        }
+    }
+
+    private fun onClickToSaveArticle() {
+        val article = args.article
+        binding.fab.setOnClickListener {
+            viewModel.savedArticleToDb(article = article)
+
+            view?.let { it1 -> Snackbar.make(it1, "Article Saved", Snackbar.LENGTH_SHORT).show() }
         }
     }
 

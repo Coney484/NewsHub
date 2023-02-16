@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newshub.api.RetrofitInstance
+import com.example.newshub.models.Article
 import com.example.newshub.models.NewsResponse
 import com.example.newshub.repository.NewsRepository
 import com.example.newshub.utils.Resource
@@ -53,4 +54,16 @@ class NewsViewModel(
         }
         return Resource.Failure(response.message())
     }
+
+
+    fun savedArticleToDb(article: Article) = viewModelScope.launch {
+        newsRepository.updateOrInsert(article = article)
+    }
+
+    fun getSavedNewsFromDb() = newsRepository.getSavedNews()
+
+    fun deleteArticles(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
+    }
+
 }
