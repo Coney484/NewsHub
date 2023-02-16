@@ -149,16 +149,16 @@ class NewsViewModel(
         try {
             if (isConnected()) {
                 val response = newsRepository.searchNews(searchQuery, searchNewsPage)
-                headlines.postValue(handleSearchNewsResponse(response))
+                searchNews.postValue(handleSearchNewsResponse(response))
 
             } else {
-                headlines.postValue(Resource.Failure("No Internet Available"))
+                searchNews.postValue(Resource.Failure("No Internet Available"))
             }
 
         } catch (t: Throwable) {
             when (t) {
-                is IOException -> headlines.postValue(Resource.Failure("Network Failed"))
-                else -> headlines.postValue(Resource.Failure("Conversion Error"))
+                is IOException -> searchNews.postValue(Resource.Failure("Network Failed"))
+                else -> searchNews.postValue(Resource.Failure("Conversion Error"))
             }
 
         }
