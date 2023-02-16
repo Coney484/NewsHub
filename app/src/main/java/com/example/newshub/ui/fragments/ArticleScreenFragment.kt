@@ -55,7 +55,7 @@ class ArticleScreenFragment : Fragment(R.layout.fragment_article_screen) {
         val article = args.article
         binding.webView.apply {
             webViewClient = WebViewClient()
-            loadUrl(article.url)
+            article.url?.let { loadUrl(it) }
         }
     }
 
