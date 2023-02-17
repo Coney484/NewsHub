@@ -6,7 +6,7 @@ A News App with MVVM, Retrofit, Room, Coroutines, Navigation Components
 NewsHub is an Adroid Application which uses [News API](https://newsapi.org/) to display Top Headlines of India and finds different Articles from  over the web. Also, gives users the ability to save those articles to refer to them later.
 
 # Screen Recording
-![Alt Text](https://www.youtube.com/watch?v=isvsjgbBVtI)
+[![Watch the video](https://ibb.co/DwX73cr)](https://youtu.be/isvsjgbBVtI)
 
 
 # Tech Stack
